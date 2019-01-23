@@ -231,8 +231,10 @@
         if (type && typeof type === 'string' && (
           (props && typeof props.onClick === 'function') || handleType[type]
         )) {
-          // Add our own events to props
-          args[1] = propsWithFastclickEvents(type, props || {});
+          if (props['data-react-fastclick'] !== false) {
+            // Add our own events to props
+            args[1] = propsWithFastclickEvents(type, props || {});
+          }
         }
 
         // Apply args to original createElement function
